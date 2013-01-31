@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,800);
+@import url(http://fonts.googleapis.com/css?family=Dosis:200,400,500);
+
+#navbar {
+	font-family: 'Dosis', sans-serif;
+	font-variant: small-caps;
+	font-weight: 300;
+	width: 960px;
+	margin: 0 auto;
+	padding: 0;
+	font-size: 26px;
+}
+
+#navbar ul {
+	/*-webkit-border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0px 0px;*/
+	/*width: 100%;*/
+	background: rgba(0, 0, 0, .50) url("../images/nav_bg.png") no-repeat top left;
+	height: 50px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+		   
+#navbar li {
+	float: left;
+	padding: 0 20px;
+	/*width: 100px;*/
+	/*background: rgba(0, 0, 0, .50);*/
+}
+			 
+#navbar li a {
+	color: #999;
+	line-height: 50px;
+	text-decoration: none;
+}
+
+#navbar li a.current {
+	color: #FFF;
+	font-weight: 500;
+}
+
+#navbar li a:hover,
+#navbar ul li:hover a {
+	height: 50px;
+	color: #FFF;
+}						  
