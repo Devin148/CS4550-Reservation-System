@@ -5,7 +5,7 @@
 		var total = slides.length;
 		var i = 0;
 
-		var next_slide = slides[(++i > total) ? 0 : i];
+		var next_slide = slides[(++i >= total) ? 0 : i];
 		var curr_slide = slides[0];
 		var prev_slide = slides[total];
 
