@@ -1,4 +1,4 @@
-## CS4550 - Web Development
+### CS4550 - Web Development
 ---
 
 ##### Reservation System
