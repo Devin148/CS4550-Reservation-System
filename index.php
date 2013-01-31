@@ -19,14 +19,16 @@
 		<div id="slideshow">
 	        <ul id="slides">
 	            <li><img src="images/slideshow/slide1.png"></li>
-	            <li><img src="images/slideshow/slide2.png"></li>
+                <li><img src="images/slideshow/slide2.png"></li>
+                <li><img src="images/slideshow/slide3.png"></li>
+	            <li><img src="images/slideshow/slide4.png"></li>
 	        </ul>
 	    </div>
 	</div>
 
 	<script class="secret-source">
         jQuery(document).ready(function() {
-            
+
             $(this).Slideshow();
 
         });
