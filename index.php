@@ -18,10 +18,10 @@
 	<div id="slideshow_wrapper">
 		<div id="slideshow">
 	        <ul id="slides">
-	            <li><img src="images/slideshow/slide1.png"></li>
-                <li><img src="images/slideshow/slide2.png"></li>
-                <li><img src="images/slideshow/slide3.png"></li>
-	            <li><img src="images/slideshow/slide4.png"></li>
+	            <li><img src="images/slideshow/slide1.png" alt="Club SwimmFrog"></li>
+                <li><img src="images/slideshow/slide2.png" alt="Club SwimmFrog"></li>
+                <li><img src="images/slideshow/slide3.png" alt="Club SwimmFrog"></li>
+	            <li><img src="images/slideshow/slide4.png" alt="Club SwimmFrog"></li>
 	        </ul>
 	    </div>
 	</div>
