@@ -24,12 +24,6 @@ body {
 	padding: 0;
 }
 
-#slideshow {
-	height: 350px;
-	width: 940px;
-	margin: 0 auto;
-}
-
 #slideshow_wrapper {
 	height: 360px;
 	width: 960px;
@@ -49,6 +43,33 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
 	-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
     box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+
+#slideshow {
+	height: 350px;
+	width: 940px;
+	margin: 0 auto;
+}
+
+#slides {
+	height: 350px;
+	width: 940px;
+	margin: 0 auto;
+	padding: 0;
+	overflow: hidden;
+	position: relative;
+	list-style: none;
+}
+
+#slides li {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+#slides li:first-child {
+	display: block;
 }
 
 #content {

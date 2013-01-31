@@ -5,21 +5,19 @@
 	<title>Reservation</title>
     <link href="stylesheets/index.css" rel="stylesheet" type="text/css" />
 	<link href="stylesheets/navbar.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="stylesheets/bjqs.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/view.css" media="all">
-    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="js/bjqs-1.3.min.js"></script>
-    <script type="text/javascript" src="js/view.js"></script>
-    <script type="text/javascript" src="js/calendar.js"></script>
+    <link href="stylesheets/view.css" rel="stylesheet" type="text/css" media="all">
+    <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <script src="js/slideshow.js" type="text/javascript"></script>
+    <script src="js/view.js" type="text/javascript"></script>
+    <script src="js/calendar.js" type="text/javascript"></script>
 </head>
 
 <body>
     <?php include("navbar.php"); ?>
     
-
 	<div id="slideshow_wrapper">
 		<div id="slideshow">
-	        <ul class="bjqs">
+	        <ul id="slides">
 	            <li><img src="images/slideshow/slide1.png"></li>
 	            <li><img src="images/slideshow/slide2.png"></li>
 	        </ul>
@@ -27,15 +25,9 @@
 	</div>
 
 	<script class="secret-source">
-        jQuery(document).ready(function($) {
-
-            $('#slideshow').bjqs({
-                height      : 350,
-                width       : 940,
-                responsive  : false,
-                showcontrols: false,
-                showmarkers : false
-            });
+        jQuery(document).ready(function() {
+            
+            $(this).Slideshow();
 
         });
     </script>

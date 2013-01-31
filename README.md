@@ -2,4 +2,4 @@
 ---
 
 ##### Reservation System
-###### Currently using pForm and Basic JQuery Slider
+###### Currently using pForm
