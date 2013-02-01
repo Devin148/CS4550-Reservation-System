@@ -72,7 +72,7 @@
     		<div class="subcontent">
                 <h1>reservations</h1>
                 <hr />
-                <?php include("navbar.php"); ?>
+                <?php include("form.php"); ?>
     		</div>
     	</div>
     	<div class="right">
