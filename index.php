@@ -26,7 +26,7 @@
 	    </div>
 	</div>
 
-	<script class="secret-source">
+	<script>
         jQuery(document).ready(function() {
 
             $(this).Slideshow();
