@@ -1,88 +1,76 @@
+<!--
+
+Based off pForm
+http://www.phpform.org/
+
+-->
+
 <div id="form_container">
-    <form id="form_559839" class="appnitro"  method="post" action="">
-        <ul >
-            <li id="li_1" >
-                <label class="description" for="element_1">Name </label>
+    <form  method="post" action="">
+        <ul>
+            <li>
+                <label class="description">Name</label>
                 <span>
-                    <input id="element_1_1" name= "element_1_1" class="element text" maxlength="255" size="7" value=""/>
-                    <label>First</label>
+                    <input id="first" type="text" maxlength="255" size="7" value="" />
+                    <label for="first">First</label>
                 </span>
                 <span>
-                    <input id="element_1_2" name= "element_1_2" class="element text" maxlength="255" size="12" value=""/>
-                    <label>Last</label>
+                    <input id="last" type="text" maxlength="255" size="12" value="" />
+                    <label for="last">Last</label>
                 </span> 
             </li>
-            <li id="li_6" >
-                <label class="description" for="element_6">Email </label>
+            <li>
+                <label class="description" for="email">Email</label>
                 <div>
-                    <input id="element_6" name="element_6" class="element text medium" type="text" maxlength="255" value=""/> 
+                    <input id="email" type="text" maxlength="255" value="" /> 
                 </div> 
             </li>
-            <li id="li_2" >
-                <label class="description" for="element_2">Date </label>
+            <li>
+                <label class="description">Date</label>
                 <span>
-                    <input id="element_2_1" name="element_2_1" class="element text" size="1" maxlength="2" value="" type="text"> /
-                    <label for="element_2_1">MM</label>
-                </span>
-                <span>
-                    <input id="element_2_2" name="element_2_2" class="element text" size="1" maxlength="2" value="" type="text"> /
-                    <label for="element_2_2">DD</label>
+                    <input id="month" size="1" maxlength="2" value="" type="text" /> /
+                    <label for="month">MM</label>
                 </span>
                 <span>
-                    <input id="element_2_3" name="element_2_3" class="element text" size="4" maxlength="4" value="" type="text">
-                    <label for="element_2_3">YYYY</label>
+                    <input id="day" size="1" maxlength="2" value="" type="text" /> /
+                    <label for="day">DD</label>
                 </span>
-            
-                <span id="calendar_2">
-                    <img id="cal_img_2" class="datepicker" src="images/form/calendar.gif" alt="Pick a date.">   
+                <span>
+                    <input id="year" size="4" maxlength="4" value="" type="text" />
+                    <label for="year">YYYY</label>
                 </span>
-                <script type="text/javascript">
-                    Calendar.setup({
-                    inputField   : "element_2_3",
-                    baseField    : "element_2",
-                    displayArea  : "calendar_2",
-                    button       : "cal_img_2",
-                    ifFormat     : "%B %e, %Y",
-                    onSelect     : selectDate
-                    });
-                </script>
-                 
             </li>
-            <li id="li_3" >
-                <label class="description" for="element_3">Time </label>
+            <li>
+                <label class="description">Time</label>
                 <span>
-                    <input id="element_3_1" name="element_3_1" class="element text " size="2" type="text" maxlength="2" value=""/> : 
-                    <label>HH</label>
+                    <input id="hour" size="2" type="text" maxlength="2" value="" /> : 
+                    <label for="hour">HH</label>
                 </span>
                 <span>
-                    <input id="element_3_2" name="element_3_2" class="element text " size="2" type="text" maxlength="2" value=""/> : 
-                    <label>MM</label>
+                    <input id="minute" size="2" type="text" maxlength="2" value="" /> : 
+                    <label for="minute">MM</label>
                 </span>
                 <span>
-                    <input id="element_3_3" name="element_3_3" class="element text " size="2" type="text" maxlength="2" value=""/>
-                    <label>SS</label>
+                    <input id="second" size="2" type="text" maxlength="2" value="" />
+                    <label for="second">SS</label>
                 </span>
                 <span>
-                    <select class="element select" style="width:4em" id="element_3_4" name="element_3_4">
+                    <select style="width:4em" id="element_3_4">
                         <option value="AM" >AM</option>
                         <option value="PM" >PM</option>
                     </select>
                     <label>AM/PM</label>
                 </span> 
             </li>
-            <li id="li_4" >
-                <label class="description" for="element_4">Number of Guests </label>
+            <li>
+                <label class="description" for="guests">Number of Guests</label>
                 <div>
-                    <input id="element_4" name="element_4" class="element text medium" type="text" maxlength="255" value=""/> 
+                    <input id="guests" type="text" maxlength="255" value="" /> 
                 </div> 
             </li>
-            <li class="buttons">
-                <input type="hidden" name="form_id" value="559839" />
-                <input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+            <li>
+                <input id="submit" class="button_text" type="submit" value="Submit" />
             </li>
         </ul>
-    </form> 
-    <div id="footer">
-        Generated by <a href="http://www.phpform.org">pForm</a>
-    </div>
+    </form>
 </div>

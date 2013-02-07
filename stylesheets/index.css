@@ -79,13 +79,15 @@ body {
 }
 
 #content_left {
+	background: rgba(10, 10, 10, .75);
 	float: left;
 	width: 600px;
 }
 
 #content_right {
+	background: rgba(10, 10, 10, .75);
 	float: right;
-	width: 250px;
+	width: 300px;
 }
 
 #footer {
@@ -171,17 +173,22 @@ img {
 }
 
 a:link {
-
+	color: #999;
+	text-decoration: none;
 }
 
 a:visited {
-
+	color: #999;
+	text-decoration: none;
 }
 
 a:active {
+	color: #FFF;
+	text-decoration: underline;
 
 }
 
 a:hover {
-	
+	color: #FFF;
+	text-decoration: underline;
 }

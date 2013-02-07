@@ -8,12 +8,14 @@
     <link href="stylesheets/view.css" rel="stylesheet" type="text/css" media="all">
     <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
     <script src="js/slideshow.js" type="text/javascript"></script>
-    <script src="js/view.js" type="text/javascript"></script>
-    <script src="js/calendar.js" type="text/javascript"></script>
 </head>
 
 <body>
-    <?php include("navbar.php"); ?>
+
+    <?php
+    $current="home";
+    include("navbar.php");
+    ?>
     
 	<div id="slideshow_wrapper">
 		<div id="slideshow">
@@ -72,7 +74,7 @@
     		<div class="subcontent">
                 <h1>reservations</h1>
                 <hr />
-                <?php include("form.php"); ?>
+                <?php include("form2.php"); ?>
     		</div>
     	</div>
     	<div class="right">
