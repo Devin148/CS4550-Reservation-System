@@ -74,7 +74,7 @@
     		<div class="subcontent">
                 <h1>reservations</h1>
                 <hr />
-                <?php include("form2.php"); ?>
+                <?php include("form.php"); ?>
     		</div>
     	</div>
     	<div class="right">
