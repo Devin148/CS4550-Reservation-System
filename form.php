@@ -9,7 +9,7 @@ http://www.phpform.org/
     <form name="reservation" method="post" onsubmit="return validateForm();" action="reserve.php">
         <ul>
             <li>
-                <label class="description">Name</label>
+                <label id="name" class="description">Name</label>
                 <span>
                     <input id="first" name="first" type="text" maxlength="255" size="7" value="" />
                     <label for="first">First</label>
@@ -20,13 +20,13 @@ http://www.phpform.org/
                 </span> 
             </li>
             <li>
-                <label class="description" name="email" for="email">Email</label>
+                <label id="email" class="description" name="email" for="email">Email</label>
                 <div>
                     <input id="email" type="text" maxlength="255" value="" /> 
                 </div> 
             </li>
             <li>
-                <label class="description">Date</label>
+                <label id="date" class="description">Date</label>
                 <span>
                     <input id="month" name="month" size="1" maxlength="2" value="" type="text" /> /
                     <label for="month">MM</label>
@@ -41,21 +41,17 @@ http://www.phpform.org/
                 </span>
             </li>
             <li>
-                <label class="description">Time</label>
+                <label id="time" class="description">Time</label>
                 <span>
                     <input id="hour" name="hour" size="2" type="text" maxlength="2" value="" /> : 
                     <label for="hour">HH</label>
                 </span>
                 <span>
-                    <input id="minute" name="minute" size="2" type="text" maxlength="2" value="" /> : 
+                    <input id="minute" name="minute" size="2" type="text" maxlength="2" value="" />
                     <label for="minute">MM</label>
                 </span>
                 <span>
-                    <input id="second" name="second" size="2" type="text" maxlength="2" value="" />
-                    <label for="second">SS</label>
-                </span>
-                <span>
-                    <select style="width:4em" id="tod" name="tod">
+                    <select id="tod" name="tod">
                         <option value="AM" >AM</option>
                         <option value="PM" >PM</option>
                     </select>
@@ -63,7 +59,7 @@ http://www.phpform.org/
                 </span> 
             </li>
             <li>
-                <label class="description" for="guests">Number of Guests</label>
+                <label id="guests" class="description" for="guests">Number of Guests</label>
                 <div>
                     <input id="guests" name="guests" type="text" maxlength="255" value="" /> 
                 </div> 
@@ -76,32 +72,103 @@ http://www.phpform.org/
 </div>
 
 <script>
+var first;
+var last;
+var email;
+var month;
+var day;
+var year;
+var hour;
+var min;
+var tod;
+var guests;
+
 function validateForm() {
-    var first = document.forms["reservation"]["first"].value;
-    var last = document.forms["reservation"]["last"].value;
+    first = document.forms["reservation"]["first"].value;
+    last = document.forms["reservation"]["last"].value;
 
-    var email = document.forms["reservation"]["email"].value;
+    email = document.forms["reservation"]["email"].value;
 
-    var month = document.forms["reservation"]["month"].value;
-    var day = document.forms["reservation"]["day"].value;
-    var year = document.forms["reservation"]["year"].value;
+    month = document.forms["reservation"]["month"].value;
+    day = document.forms["reservation"]["day"].value;
+    year = document.forms["reservation"]["year"].value;
 
-    var hour = document.forms["reservation"]["hour"].value;
-    var minute = document.forms["reservation"]["minute"].value;
-    var second = document.forms["reservation"]["second"].value;
+    hour = document.forms["reservation"]["hour"].value;
+    minute = document.forms["reservation"]["minute"].value;
 
-    var tod = document.forms["reservation"]["tod"].value;
+    tod = document.forms["reservation"]["tod"].value;
 
-    var guests = document.forms["reservation"]["guests"].value;
+    guests = document.forms["reservation"]["guests"].value;
 
-    if (isEmpty(first) || isEmpty(last) ||
-        isEmpty(email) ||
-        isEmpty(month) || isEmpty(day) || isEmpty(year) ||
-        isEmpty(hour) || isEmpty(minute) || isEmpty(second) ||
-        isEmpty(tod) || isEmpty(guests)) {
-        alert("One of the fields has been left empty");
-        return false;
+    resetLabels();
+    return checkEmpty();
+}
+
+function resetLabels() {
+    $("label#name").css("color", "#FFF");
+    $("label#name").html("Name");
+
+    $("label#email").css("color", "#FFF");
+    $("label#email").html("Email");
+
+    $("label#date").css("color", "#FFF");
+    $("label#date").html("Date");
+
+    $("label#time").css("color", "#FFF");
+    $("label#time").html("Time");
+
+    $("label#guests").css("color", "#FFF");
+    $("label#guests").html("Number of Guests");
+}
+
+function checkEmpty() {
+    var completed = true;
+    if (isEmpty(first)) {
+        $("label#name").css("color", "#F00");
+        $("label#name").html("* Name is required");
+        completed = false;
     }
+    if (isEmpty(last)) {
+        $("label#name").css("color", "#F00");
+        $("label#name").html("* Name is required");
+        completed = false;
+    }
+    if (isEmpty(email)) {
+        $("label#email").css("color", "#F00");
+        $("label#email").html("* Email is required");
+        completed = false;
+    }
+    if (isEmpty(month)) {
+        $("label#date").css("color", "#F00");
+        $("label#date").html("* Date is required");
+        completed = false;
+    }
+    if (isEmpty(day)) {
+        $("label#date").css("color", "#F00");
+        $("label#date").html("* Date is required");
+        completed = false;
+    }
+    if (isEmpty(year)) {
+        $("label#date").css("color", "#F00");
+        $("label#date").html("* Date is required");
+        completed = false;
+    }
+    if (isEmpty(hour)) {
+        $("label#time").css("color", "#F00");
+        $("label#time").html("* Time is required");
+        completed = false;
+    }
+    if (isEmpty(minute)) {
+        $("label#time").css("color", "#F00");
+        $("label#time").html("* Time is required");
+        completed = false;
+    }
+    if (isEmpty(guests)) {
+        $("label#guests").css("color", "#F00");
+        $("label#guests").html("* Number of guests is required");
+        completed = false;
+    }
+    return completed;
 }
 
 function isEmpty(field) {
