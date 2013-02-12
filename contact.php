@@ -15,14 +15,14 @@
 <body>
 
     <?php
-    $current="events";
+    $current="contact";
     include("navbar.php");
     ?>
 
     <div id="content">
         <div id="content_left">
-            <h1>Events</h1>
-            <p>Upcoming events</p>
+            <h1>Contact</h1>
+            <p>Contact forms</p>
         </div>
         <div id="content_right">
             <h2>Twitter @Club_Swimmfrog</h2>

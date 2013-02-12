@@ -27,8 +27,7 @@ body {
 #slideshow_wrapper {
 	height: 360px;
 	width: 960px;
-	margin: 0 auto;
-	margin-top: 10px;
+	margin: 10px auto 35px auto;
 	padding-top: 10px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -74,8 +73,30 @@ body {
 
 #content {
 	width: 960px;
-	margin: 0 auto;
-	margin-top: 50px;
+	margin: 15px auto;
+}
+
+#content h1 {
+	font-size: 32px;
+	font-weight: 400;
+	font-family: "Dosis";
+	text-align: left;
+	text-shadow: 1px 1px 2px rgba(75, 75, 75, 1);
+	margin: 0;
+	padding: 10px;
+}
+
+#content h2 {
+	font-size: 22px;
+	font-weight: 300;
+	font-family: "Dosis";
+	text-align: center;
+	margin: 0;
+	padding: 5px;
+}
+
+#content p {
+	padding: 10px;
 }
 
 #content_left {
