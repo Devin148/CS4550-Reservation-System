@@ -101,7 +101,7 @@ function validateForm() {
     guests = document.forms["reservation"]["guests"].value;
 
     resetLabels();
-    return checkEmpty();
+    return (checkEmpty() && validateInput());
 }
 
 function resetLabels() {
@@ -169,6 +169,28 @@ function checkEmpty() {
         completed = false;
     }
     return completed;
+}
+
+function validateInput() {
+    var success = true;
+
+    if (month > 12 || month < 1) {
+        success = false;
+        $("label#date").css("color", "#F00");
+        $("label#date").html("* Date does not exist");
+    }
+    if (day > 31 || day < 1) {
+        success = false;
+        $("label#date").css("color", "#F00");
+        $("label#date").html("* Date does not exist");
+    }
+    if (year < new Date().getFullYear()) {
+        success = false;
+        $("label#date").css("color", "#F00");
+        $("label#date").html("* Date does not exist");
+    }
+
+    return success;
 }
 
 function isEmpty(field) {
