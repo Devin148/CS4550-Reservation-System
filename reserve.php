@@ -23,9 +23,27 @@
         <div id="content_left">
             <?php
             $first = $_POST["first"];
+            $last = $_POST["last"];
+            $email = $_POST["email"];
+            $day = $_POST["day"];
+            $month = $_POST["month"];
+            $year = $_POST["year"];
+            $hour = $_POST["hour"];
+            $minute = $_POST["minute"];
+            $tod = $_POST["tod"];
+            $guests = $_POST["guests"];
             ?>
-            <h1>Thank you, <?=$first?>, for making a reservation!</h1>
-            <h2>We will contact you within 24 hours about your reservation.</h2>
+            <h1 align="center">Thank you, <?=$first?>, for making a reservation!</h1>
+            <p align="center">We will contact you within 24 hours to confirm your reservation.</p>
+
+            <table align="center">
+                <tr><th colspan="2">Reservation information</th></tr>
+                <tr><td>Name:</td><td><?=$first?> <?=$last?></td></tr>
+                <tr><td>Email:</td><td><?=$email?></td></tr>
+                <tr><td>Date:</td><td><?=$day?>/<?=$month?>/<?=$year?></td></tr>
+                <tr><td>Time:</td><td><?=$hour?>:<?=$minute?> <?=$tod?></td></tr>
+                <tr><td>Number of guests:</td><td><?=$guests?></td></tr>
+            </table>
         </div>
         <div id="content_right">
             <p> Right Content </p>

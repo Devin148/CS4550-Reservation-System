@@ -22,7 +22,7 @@ http://www.phpform.org/
             <li>
                 <label id="email" class="description" name="email" for="email">Email</label>
                 <div>
-                    <input id="email" type="text" maxlength="255" value="" /> 
+                    <input id="email" name="email" type="text" maxlength="255" value="" /> 
                 </div> 
             </li>
             <li>
