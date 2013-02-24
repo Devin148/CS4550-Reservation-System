@@ -8,6 +8,7 @@
     <link href="stylesheets/view.css" rel="stylesheet" type="text/css" media="all">
     <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
     <script src="js/slideshow.js" type="text/javascript"></script>
+    <script src="js/form.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -19,22 +20,35 @@
 
     <div id="content">
         <div id="content_left">
-            <h1>Reservations</h1>
+            <!-- Temp image, not mine, wish it were, getting my own soon enough -->
+            <img src="images/club/seats.png" alt="Club SwimmFrog" />
             <?php
             if (isset($_POST["email"])) {
             ?>
 
-            <h3>Your reservations</h3>
+            <h1>Your reservations</h1>
 
             <?php
                 getReservations($_POST["email"]);
             } else {
             ?>
 
-            <h3>Reservation lookup</h3>
-            <form name="lookup" method="post" onsubmit="return validateEmail();" action="reservations.php">
-                <label id="email" class="description" name="email" for="email">Email</label>
-                <input id="email" name="email" type="text" maxlength="255" size="15" value="" />
+            <h1>Reservations</h1>
+            <p>Club SwimmFrog offers fine an enjoyable club experience with weekly live performances,
+                a fun atmosphere, friendly staff, and the best liquor in Boston.</p>
+            <p>For booking large parties and avoiding lines,
+                make a reservation today by calling us at (617)-373-4357 or
+                filling out the reservation form on the right.</p>
+
+            <h1>Already have a reservation?</h1>
+            <p>If you’ve just requested a reservation please give us 24 hours to contact
+                you via email to confirm or deny your reservation.</p>
+
+            <p>If we have confirmed your reservation, input your email below
+                to cancel or lookup the details of your reservation.</p>
+            <form name="lookup" method="post" onsubmit="return validateLookup();" action="reservations.php">
+                <label id="lookup" class="description" name="email" for="email"></label>
+                <input id="email" name="email" type="text" maxlength="255" size="15" value="Email" />
                 <input id="submit" class="button_text" type="submit" value="Submit" />
             </form>
 
@@ -43,8 +57,8 @@
             ?>
         </div>
         <div id="content_right">
-            <h2>Twitter @Club_Swimmfrog</h2>
-            <p>Tweet</p>
+            <h2>Reservation Request</h2>
+            <?php include("form.php"); ?>
         </div>
     </div>
 
@@ -80,7 +94,7 @@
     ?>
 
     <script>
-    function validateEmail() {
+    function validateLookup() {
         // Get the email
         var email = document.forms["lookup"]["email"].value
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -89,8 +103,8 @@
         if (re.test(email)) {
             return true;
         } else {
-            $("label#email").css("color", "#F00");
-            $("label#email").html("* Please enter a valid email");
+            $("label#lookup").css("color", "#F00");
+            $("label#lookup").html("* Please enter a valid email");
             return false;   
         }
     }
