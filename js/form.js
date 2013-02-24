@@ -110,8 +110,8 @@ function validateEmail(email) {
     if (re.test(email)) {
         return true;
     } else {
-        $("label#email").css("display", "block");
-        $("label#email").val("* Please enter a valid email");
+        $("label#email").css("color", "#F00");
+        $("label#email").html("* Please enter a valid email");
         return false;   
     }
 }
