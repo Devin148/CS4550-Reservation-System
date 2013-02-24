@@ -8,6 +8,7 @@
     <link href="stylesheets/view.css" rel="stylesheet" type="text/css" media="all">
     <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
     <script src="js/slideshow.js" type="text/javascript"></script>
+    <script src="js/form.js" type="text/javascript"></script>
 </head>
 
 <body>

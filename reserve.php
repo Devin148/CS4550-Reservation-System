@@ -8,8 +8,6 @@
     <link href="stylesheets/view.css" rel="stylesheet" type="text/css" media="all">
     <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
     <script src="js/slideshow.js" type="text/javascript"></script>
-    <script src="js/view.js" type="text/javascript"></script>
-    <script src="js/calendar.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -22,8 +20,10 @@
     <div id="content">
         <div id="content_left">
             <?php
+            // Get all our vars
             $first = $_POST["first"];
             $last = $_POST["last"];
+            $name = $first." ".$last;
             $email = $_POST["email"];
             $day = $_POST["day"];
             $month = $_POST["month"];
@@ -32,9 +32,35 @@
             $minute = $_POST["minute"];
             $tod = $_POST["tod"];
             $guests = $_POST["guests"];
+
+            // Create / send an email
+            $to = "devinhurd@gmail.com";
+            $subject = "RESERVATION REQUEST - ".$name.": ".$email; 
+            $body = "From: " . $name . "\n\n" . 
+                    "Email: " . $email . "\n\n" . 
+                    "Date: " . $day . "/" . $month . "/" . $year . "\n\n" . 
+                    "Time: " . $hour . ":" . $minute . " " . $tod . "\n\n" . 
+                    "Number of guests: " . $guests;
+            $clientSubject = "Do not reply - Club SwimmFrog";
+            $clientBody = "Thank you for making a reservation. Below is your reservation information. We will contact you within 24 hours to confirm your reservation.\n\n\n\n" . $body;
+            
+            // If the email sent, and we successfully inserted the row, let the user know
+            if (mail($to, $subject, $body) && saveReservation($name, $email, $day, $month, $year, $hour, $minute, $tod, $guests)) {
+                mail($email, $clientSubject, $clientBody);
             ?>
-            <h1 align="center">Thank you, <?=$first?>, for making a reservation!</h1>
-            <p align="center">We will contact you within 24 hours to confirm your reservation.</p>
+                <h1 align="center">Thank you, <?=$first?>, for making a reservation!</h1>
+                <p align="center">We will contact you within 24 hours to confirm your reservation.</p>
+                <p align="center">To view or cancel your reservation, please visit our reservations page.</p>
+            <?php
+            // Otherwise, let them know it failed
+            } else {
+            ?>
+                <h1 align="center">We were unable to book your reservation due to technical difficulties.</h1>
+                <p align="center">Please give us a call at 1-617-373-4357 to book your reservation.</p>
+                <p align="center">We're very sorry for this inconvenience.</p>
+            <?php
+            }
+            ?>
 
             <table align="center">
                 <tr><th colspan="2">Reservation information</th></tr>
@@ -49,5 +75,35 @@
             <p> Right Content </p>
         </div>
     </div>
+
+    <?php
+
+    // Save the reservation info into the table and return if successful
+    function saveReservation($name, $email, $day, $month, $year, $hour, $minute, $tod, $guests) {
+        // Connect to mysql
+        $mysqli = new mysqli("swimmfrogcom.ipagemysql.com","res_user","res_pass");
+        if ($mysqli->connect_errno) {
+            echo("failed to connect to db: " . $mysqli->connect_error);
+            return false;
+        }
+
+        // Format date
+        $date = $day."/".$month."/".$year;
+        $time = $hour.":".$minute." ".$tod;
+        $datetime = new DateTime($date . " " . $time);
+        $mysqldate = $datetime->format("Y-m-d H:i:s");
+
+        // Connect to db
+        $mysqli->select_db("swimmfrog_res");
+
+        // Create prepared statement to avoid injection
+        $stmt = $mysqli->prepare("INSERT INTO reservations(name, email, res_date, guests) VALUES(?, ?, ?, ?)");
+        $stmt->bind_param('sssi', $name, $email, $mysqldate, $guests);
+        $stmt->execute()
+
+        return true;
+    }
+
+    ?>
 </body>
 </html>
