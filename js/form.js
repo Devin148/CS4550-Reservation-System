@@ -1,3 +1,9 @@
+/*
+
+Messy messy messy...
+
+*/
+
 function validateForm() {
     var first = document.forms["reservation"]["first"].value;
     var last = document.forms["reservation"]["last"].value;
@@ -10,7 +16,7 @@ function validateForm() {
     var tod = document.forms["reservation"]["tod"].value;
     var guests = document.forms["reservation"]["guests"].value;
     resetLabels();
-    return (checkEmpty(first, last, email, month, day, year, hour, min, tod, guests) && validateInput(month, day, year, email));
+    return (checkEmpty(first, last, email, month, day, year, hour, min, tod, guests) && validateInput(month, day, year, email, guests));
 }
 
 function resetLabels() {
@@ -80,7 +86,7 @@ function checkEmpty(first, last, email, month, day, year, hour, min, tod, guests
     return completed;
 }
 
-function validateInput(month, day, year, email) {
+function validateInput(month, day, year, email, guests) {
     var success = true;
 
     if (month > 12 || month < 1) {
@@ -97,6 +103,16 @@ function validateInput(month, day, year, email) {
         success = false;
         $("label#date").css("color", "#F00");
         $("label#date").html("* Date does not exist");
+    }
+    if (guests <= 0) {
+        success = false;
+        $("label#guests").css("color", "#F00");
+        $("label#guests").html("* At least one guest required");
+    }
+    if (guests > 15) {
+        success = false;
+        $("label#guests").css("color", "#F00");
+        $("label#guests").html("* No more than 15 per reservation");
     }
 
     return (success && validateEmail(email));
