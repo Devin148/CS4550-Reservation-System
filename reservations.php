@@ -21,7 +21,7 @@
     <div id="content">
         <div id="content_left">
             <!-- Temp image, not mine, wish it were, getting my own soon enough -->
-            <img src="images/club/seats.png" alt="Club SwimmFrog" />
+            <img src="images/club/seats.png" class="center" alt="Club SwimmFrog" />
             <?php
             if (isset($_POST["email"])) {
             ?>
@@ -46,7 +46,7 @@
 
             <p>If we have confirmed your reservation, input your email below
                 to cancel or lookup the details of your reservation.</p>
-            <form name="lookup" method="post" onsubmit="return validateLookup();" action="reservations.php">
+            <form id="lookup" name="lookup" method="post" onsubmit="return validateLookup();" action="reservations.php">
                 <label id="lookup" class="description" name="email" for="email"></label>
                 <input id="email" name="email" type="text" maxlength="255" size="15" value="Email" />
                 <input id="submit" class="button_text" type="submit" value="Submit" />
@@ -57,7 +57,8 @@
             ?>
         </div>
         <div id="content_right">
-            <h2>Reservation Request</h2>
+            <h2 class="center">Reservation Request</h2>
+            <hr />
             <?php include("form.php"); ?>
         </div>
     </div>

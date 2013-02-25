@@ -8,9 +8,9 @@ http://www.phpform.org/
 #form_container {
 	margin:0 auto;
 	text-align:left;
-	margin-left:20px;
-	width: 245px;
-	font-family:Lucida Grande, Tahoma, Arial, Verdana, sans-serif;
+	margin-left: 0 auto;
+	width: 225px;
+	font-family: Lucida Grande, Tahoma, Arial, Verdana, sans-serif;
 	font-size:small;
 }
 
