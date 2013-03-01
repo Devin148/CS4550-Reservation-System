@@ -81,7 +81,7 @@ if (!isset($_POST["email"])) {
                 <tr><th colspan="2">Reservation information</th></tr>
                 <tr><td>Name:</td><td><?=$first?> <?=$last?></td></tr>
                 <tr><td>Email:</td><td><?=$email?></td></tr>
-                <tr><td>Date:</td><td><?=$day?>/<?=$month?>/<?=$year?></td></tr>
+                <tr><td>Date:</td><td><?=$month?>/<?=$day?>/<?=$year?></td></tr>
                 <tr><td>Time:</td><td><?=$hour?>:<?=$minute?> <?=$tod?></td></tr>
                 <tr><td>Number of guests:</td><td><?=$guests?></td></tr>
             </table>
