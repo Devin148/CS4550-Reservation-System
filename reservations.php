@@ -14,13 +14,17 @@
 <body>
 
     <?php
+    // Include the navbar
     $current="reservations";
     include("navbar.php");
     ?>
 
     <div id="content">
         <div id="content_left">
-            <!-- Temp image, not mine, wish it were, getting my own soon enough -->
+            <!--
+                Temp image, not mine, wish it were, getting my own soon enough..
+                (But seemingly not before the project is over)
+            -->
             <img src="images/club/seats.png" class="center" alt="Club SwimmFrog" />
             <?php
             if (isset($_POST["email"])) {
@@ -64,20 +68,26 @@
     </div>
 
     <?php
-
+    // Query for reservations and add them to the page in a table
     function getReservations($email) {
+        // Create a mysqli connection
         $mysqli = new mysqli("swimmfrogcom.ipagemysql.com","res_user","res_pass");
         if ($mysqli->connect_errno) {
             echo("failed to connect to db: " . $mysqli->connect_error);
             return false;
         }
 
+        // Select the reservations DB
         $mysqli->select_db("swimmfrog_res");
 
+        // Create a prepared statement and bind the values
         $stmt = $mysqli->prepare("SELECT name, res_date, guests FROM reservations WHERE email=?");
         $stmt->bind_param('s', $email);
         $stmt->execute();
         $stmt->bind_result($name, $mysqldate, $guests);
+
+        // Add the found reservations in a table
+        // TODO: Check if there aren't any reservations found (just realized that...)
         echo ("<table>");
         echo("<tr><td>Name</td><td>Date & Time</td><td>Number of Guests</td></tr>");
         while ($stmt->fetch()) {

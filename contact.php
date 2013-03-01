@@ -15,6 +15,7 @@
 <body>
 
     <?php
+    // Include navbar
     $current="contact";
     include("navbar.php");
     ?>

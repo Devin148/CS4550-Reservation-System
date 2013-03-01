@@ -14,6 +14,7 @@
 <body>
 
     <?php
+    // Include the navbar
     $current="home";
     include("navbar.php");
     ?>
@@ -30,6 +31,7 @@
 	</div>
 
 	<script>
+        // Apply slideshow effect
         jQuery(document).ready(function() {
 
             $(this).Slideshow();
@@ -75,6 +77,7 @@
     		<div class="subcontent">
                 <h1>reservations</h1>
                 <hr />
+                <!-- Include the reservations form -->
                 <?php include("form.php"); ?>
     		</div>
     	</div>

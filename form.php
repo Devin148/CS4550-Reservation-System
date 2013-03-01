@@ -1,8 +1,8 @@
 <!--
-
-Based off pForm
-http://www.phpform.org/
-
+    Based off pForm
+    http://www.phpform.org/
+    -----------------------
+    PHP file to allow include in index and reservation page
 -->
 
 <div id="form_container">

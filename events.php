@@ -15,6 +15,7 @@
 <body>
 
     <?php
+    // Include navbar
     $current="events";
     include("navbar.php");
     ?>

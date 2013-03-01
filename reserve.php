@@ -21,6 +21,7 @@ if (!isset($_POST["email"])) {
 <body>
 
     <?php
+    // Include the navbar, with no page set as current
     $current="";
     include("navbar.php");
     ?>
@@ -28,6 +29,7 @@ if (!isset($_POST["email"])) {
     <div id="content">
         <div id="content_left">
             <?php
+            // Get all the post vars
             $first = $_POST["first"];
             $last = $_POST["last"];
             $name = $first." ".$last;
@@ -44,7 +46,7 @@ if (!isset($_POST["email"])) {
 
             $guests = $_POST["guests"];
 
-
+            // Setup an email to myself (the club owner)
             $to = "devinhurd@gmail.com";
             $subject = "RESERVATION REQUEST - ".$name.": ".$email; 
             $body = "From: ".$name."\n\n".
@@ -52,16 +54,20 @@ if (!isset($_POST["email"])) {
                     "Date: ".$day."/".$month."/".$year."\n\n".
                     "Time: ".$hour.":".$minute." ".$tod."\n\n".
                     "Number of guests: ".$guests;
+            // And setup one to send to the client
             $clientSubject = "Do not reply - Club SwimmFrog";
             $clientBody = "Thank you for making a reservation. Below is your reservation information. We will contact you within 24 hours to confirm your reservation.\n\n\n\n" . $body;
+
+            // Check to make sure I get the email, and the reservation is added to the DB
             if (mail($to, $subject, $body) && saveReservation($name, $email, $day, $month, $year, $hour, $minute, $tod, $guests)) {
+                // If so, send an emial to the client and display a success message
                 mail($email, $clientSubject, $clientBody);
             ?>
                 <h1 align="center">Thank you, <?=$first?>, for making a reservation!</h1>
                 <p align="center">We will contact you within 24 hours to confirm your reservation.</p>
                 <p align="center">To view or cancel your reservation, please visit our reservations page.</p>
             <?php
-                // Call save to db function
+            // If it fails, let the client know
             } else {
             ?>
                 <h1 align="center">We were unable to book your reservation due to technical difficulties.</h1>
@@ -86,30 +92,36 @@ if (!isset($_POST["email"])) {
     </div>
 
     <?php
-
+    // Save a reservation to the DB and return if successful
     function saveReservation($name, $email, $day, $month, $year, $hour, $minute, $tod, $guests) {
+        // Create a new mysqli connection
         $mysqli = new mysqli("swimmfrogcom.ipagemysql.com","res_user","res_pass");
         if ($mysqli->connect_errno) {
             echo("failed to connect to db: " . $mysqli->connect_error);
             return false;
         }
 
+        // Change the form date to the mysql format
         $date = $day."/".$month."/".$year;
         $time = $hour.":".$minute." ".$tod;
         $datetime = new DateTime($date . " " . $time);
         $mysqldate = $datetime->format("Y-m-d H:i:s");
 
+        // Select the reservation database
         $mysqli->select_db("swimmfrog_res");
 
+        // Create a prepared statement to avoid SQL injections
         if (!($stmt = $mysqli->prepare("INSERT INTO reservations(name, email, res_date, guests)
             VALUES(?, ?, ?, ?)"))) {
             return false;
         }
 
+        // Bind the vars into the prepared statement
         if (!$stmt->bind_param('sssi', $name, $email, $mysqldate, $guests)) {
             return false;
         }
 
+        // Execute the insert
         if (!$stmt->execute()) {
             return false;
         }
