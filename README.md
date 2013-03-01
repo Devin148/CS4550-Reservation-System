@@ -1,4 +1,4 @@
-##### CS4550 - Web Development
+### CS4550 - Web Development
 ---
 
 For the course, we were asked to explain each of our files.
