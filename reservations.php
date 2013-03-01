@@ -87,17 +87,20 @@
         $stmt->bind_result($name, $mysqldate, $guests);
 
         // Add the found reservations in a table
-        // TODO: Check if there aren't any reservations found (just realized that...)
-        echo ("<table>");
-        echo("<tr><td>Name</td><td>Date & Time</td><td>Number of Guests</td></tr>");
-        while ($stmt->fetch()) {
-            echo("<tr>");
-            echo("<td>" . $name . "</td>");
-            echo("<td>" . $mysqldate . "</td>");
-            echo("<td>" . $guests . "</td>");
-            echo("</tr>");
+        if ($stmt->fetch() == null) {
+            echo("<p>You do not have any reservations</p>");
+        } else {
+            echo("<table>");
+            echo("<tr><td>Name</td><td>Date & Time</td><td>Number of Guests</td></tr>");
+            do {
+                echo("<tr>");
+                echo("<td>" . $name . "</td>");
+                echo("<td>" . $mysqldate . "</td>");
+                echo("<td>" . $guests . "</td>");
+                echo("</tr>");
+            } while ($stmt->fetch());
+            echo ("</table>");
         }
-        echo ("</table>");
 
         return true;
     }
