@@ -6,7 +6,7 @@
 -->
 
 <div id="form_container">
-    <form name="reservation" method="post" onsubmit="return validateForm();" action="reserve.php">
+    <form name="reservation" id="reservation" method="post" action="reserve.php">
         <ul>
             <li>
                 <label id="name" class="description">Name</label>
@@ -20,7 +20,7 @@
                 </span> 
             </li>
             <li>
-                <label id="email" class="description" name="email" for="email">Email</label>
+                <label id="email_label" class="description" name="email" for="email">Email</label>
                 <div>
                     <input id="email" name="email" type="text" maxlength="255" size="25" value="" /> 
                 </div> 
@@ -59,7 +59,7 @@
                 </span> 
             </li>
             <li>
-                <label id="guests" class="description" for="guests">Number of Guests</label>
+                <label id="guests_label" class="description" for="guests">Number of Guests</label>
                 <div>
                     <input id="guests" name="guests" type="text" maxlength="255" value="" /> 
                 </div> 

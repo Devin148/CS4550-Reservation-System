@@ -95,20 +95,13 @@ if (!isset($_POST["email"])) {
     // Save a reservation to the DB and return if successful
     function saveReservation($name, $email, $day, $month, $year, $hour, $minute, $tod, $guests) {
         // Create a new mysqli connection
-        $mysqli = new mysqli("swimmfrogcom.ipagemysql.com","res_user","res_pass");
-        if ($mysqli->connect_errno) {
-            echo("failed to connect to db: " . $mysqli->connect_error);
-            return false;
-        }
+        include ("connect.php");
 
         // Change the form date to the mysql format
         $date = $day."/".$month."/".$year;
         $time = $hour.":".$minute." ".$tod;
         $datetime = new DateTime($date . " " . $time);
         $mysqldate = $datetime->format("Y-m-d H:i:s");
-
-        // Select the reservation database
-        $mysqli->select_db("swimmfrog_res");
 
         // Create a prepared statement to avoid SQL injections
         if (!($stmt = $mysqli->prepare("INSERT INTO reservations(name, email, res_date, guests)

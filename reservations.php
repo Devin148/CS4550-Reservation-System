@@ -71,14 +71,7 @@
     // Query for reservations and add them to the page in a table
     function getReservations($email) {
         // Create a mysqli connection
-        $mysqli = new mysqli("swimmfrogcom.ipagemysql.com","res_user","res_pass");
-        if ($mysqli->connect_errno) {
-            echo("failed to connect to db: " . $mysqli->connect_error);
-            return false;
-        }
-
-        // Select the reservations DB
-        $mysqli->select_db("swimmfrog_res");
+        include ("connect.php");
 
         // Create a prepared statement and bind the values
         $stmt = $mysqli->prepare("SELECT name, res_date, guests FROM reservations WHERE email=?");

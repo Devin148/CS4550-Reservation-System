@@ -9,6 +9,7 @@
     <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
     <script src="js/slideshow.js" type="text/javascript"></script>
     <script src="js/form.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -35,6 +36,36 @@
         jQuery(document).ready(function() {
 
             $(this).Slideshow();
+
+            $("#reservation").submit(function () {
+                if (!isFormFilled("reservation")) {
+                    return false;
+                }
+                if (!isEmail($("#reservation #email").val())) {
+                    alert ("Please enter a valid email.");
+                    return false;
+                }
+                var day = $("#reservation #day").val();
+                var month = $("#reservation #month").val();
+                var year = $("#reservation #year").val();
+                if (!isDateAllowed(day, month, year)) {
+                    alert ("Please enter a correct future date. Reservations must be made at least one day in advance.");
+                    return false;
+                }
+                var hour = $("#reservation #hour").val();
+                var minute = $("#reservation #minute").val();
+                var tod = $("#reservation #tod").val();
+                if (!isTimeAllowed(hour, minute, tod)) {
+                    alert ("We only accept reservations between 12pm and 2am.");
+                    return false;
+                }
+                var guests = $("#reservation #guests").val();
+                if(guests > 15 || guests < 1) {
+                    alert ("Reservations must have 1-15 guests.");
+                    return false;
+                }
+                return true;
+            });
 
         });
     </script>

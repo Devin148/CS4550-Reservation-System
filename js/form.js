@@ -1,140 +1,77 @@
-/*
-
-Messy messy messy...
-
-*/
-
-function validateForm() {
-    var first = document.forms["reservation"]["first"].value;
-    var last = document.forms["reservation"]["last"].value;
-    var email = document.forms["reservation"]["email"].value;
-    var month = document.forms["reservation"]["month"].value;
-    var day = document.forms["reservation"]["day"].value;
-    var year = document.forms["reservation"]["year"].value;
-    var hour = document.forms["reservation"]["hour"].value;
-    var min = document.forms["reservation"]["minute"].value;
-    var tod = document.forms["reservation"]["tod"].value;
-    var guests = document.forms["reservation"]["guests"].value;
-    resetLabels();
-    return (checkEmpty(first, last, email, month, day, year, hour, min, tod, guests) && validateInput(month, day, year, email, guests));
+// Is the form, with formId, not empty?
+// Returns  true if the form is completely filled out
+//          false if any element is left blank
+function isFormFilled(formId) {
+    var valid = true;
+    var query = "#" + formId + " :text," +
+                "#" + formId + " select";
+    $(query).each(function() {
+        if ($(this).val() == null || $(this).val() == '') {
+            valid = false;
+            // Alter background to signify there's an error
+            $(this).css("background-color", "#F00");
+            $(this).stop().animate({
+                backgroundColor: "#FFF"
+            });
+        }
+    });
+    return valid;
 }
 
-function resetLabels() {
-    $("label#name").css("color", "#FFF");
-    $("label#name").html("Name");
-
-    $("label#email").css("color", "#FFF");
-    $("label#email").html("Email");
-
-    $("label#date").css("color", "#FFF");
-    $("label#date").html("Date");
-
-    $("label#time").css("color", "#FFF");
-    $("label#time").html("Time");
-
-    $("label#guests").css("color", "#FFF");
-    $("label#guests").html("Number of Guests");
+// Is the provided string empty?
+function isEmpty(string) {
+    return (string == null || string == "") ? true : false;
 }
 
-function checkEmpty(first, last, email, month, day, year, hour, min, tod, guests) {
-    var completed = true;
-    if (isEmpty(first)) {
-        $("label#name").css("color", "#F00");
-        $("label#name").html("* Name is required");
-        completed = false;
-    }
-    if (isEmpty(last)) {
-        $("label#name").css("color", "#F00");
-        $("label#name").html("* Name is required");
-        completed = false;
-    }
-    if (isEmpty(email)) {
-        $("label#email").css("color", "#F00");
-        $("label#email").html("* Email is required");
-        completed = false;
-    }
-    if (isEmpty(month)) {
-        $("label#date").css("color", "#F00");
-        $("label#date").html("* Date is required");
-        completed = false;
-    }
-    if (isEmpty(day)) {
-        $("label#date").css("color", "#F00");
-        $("label#date").html("* Date is required");
-        completed = false;
-    }
-    if (isEmpty(year)) {
-        $("label#date").css("color", "#F00");
-        $("label#date").html("* Date is required");
-        completed = false;
-    }
-    if (isEmpty(hour)) {
-        $("label#time").css("color", "#F00");
-        $("label#time").html("* Time is required");
-        completed = false;
-    }
-    if (isEmpty(minute)) {
-        $("label#time").css("color", "#F00");
-        $("label#time").html("* Time is required");
-        completed = false;
-    }
-    if (isEmpty(guests)) {
-        $("label#guests").css("color", "#F00");
-        $("label#guests").html("* Number of guests is required");
-        completed = false;
-    }
-    return completed;
-}
-
-function validateInput(month, day, year, email, guests) {
-    var success = true;
-
-    if (month > 12 || month < 1) {
-        success = false;
-        $("label#date").css("color", "#F00");
-        $("label#date").html("* Date does not exist");
-    }
-    if (day > 31 || day < 1) {
-        success = false;
-        $("label#date").css("color", "#F00");
-        $("label#date").html("* Date does not exist");
-    }
-    if (year < new Date().getFullYear()) {
-        success = false;
-        $("label#date").css("color", "#F00");
-        $("label#date").html("* Date does not exist");
-    }
-    if (guests <= 0) {
-        success = false;
-        $("label#guests").css("color", "#F00");
-        $("label#guests").html("* At least one guest required");
-    }
-    if (guests > 15) {
-        success = false;
-        $("label#guests").css("color", "#F00");
-        $("label#guests").html("* No more than 15 per reservation");
-    }
-
-    return (success && validateEmail(email));
-}
-
-function validateEmail(email) {
-    // Get the email
+// Is the provided email valid?
+function isEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
-    // Check if it's a real email
-    if (re.test(email)) {
-        return true;
-    } else {
-        $("label#email").css("color", "#F00");
-        $("label#email").html("* Please enter a valid email");
-        return false;   
-    }
+    return re.test(email) ? true : false;
 }
 
-function isEmpty(field) {
-    if (field == null || field =="") {
-        return true;
+// Is the date a real date and is it beyond today's date?
+function isDateAllowed(day, month, year) {
+    var currentTime = new Date();
+    var currentYear = currentTime.getFullYear();
+    var currentMonth = currentTime.getMonth() + 1;
+    var currentDay = currentTime.getDate();
+
+    if (year > currentYear) {
+        if ((day <= 31 && day >=1) &&
+            (month <= 12 && month >=1)) {
+            return true;
+        }
+    } else if (year == currentYear) {
+        if ((month > currentMonth) &&
+            (day <= 31 && day >=1)) {
+            return true;
+        } else if (month < currentMonth) {
+            return false;
+        } else {
+            if ((day <= 31 && day >=1) &&
+                (day > currentDay)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+// Is the given time during our hours of operation?
+function isTimeAllowed(hour, minute, tod) {
+    // If it's in the AM, we close at 3am, so the reservation must be between 12am and 2am
+    if (tod == "AM") {
+        if ((hour == 12 || hour == 1 || hour == 2) &&
+            (minute <= 59 && minute >= 0)) {
+                return true;
+        }
+    // If it's in the PM, we open at 12pm and the PM ends at 11:59pm
+    } else if (tod == "PM") {
+        if ((hour <=12 && hour >=1) &&
+            (minute <= 59 && minute >= 0)) {
+            return true;
+        }
     }
     return false;
 }
